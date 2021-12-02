@@ -4,12 +4,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;;
+import javafx.scene.control.Label;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
+
+;
 
 public class Controller {
     @FXML
@@ -27,10 +26,11 @@ public class Controller {
     @FXML
     public Label otodik;
     @FXML
-    public ArrayList<Integer> sorsoltSzamokLista;
+    public ArrayList<Integer> sorsoltSzamokLista = new ArrayList<>();
 
     private Random random;
     private boolean sorsolBef;
+    private boolean rendezBef;
     private int kihuzottSzamSzam;
     private int gombLenyomasCount;
 
@@ -38,11 +38,17 @@ public class Controller {
     public void initialize() {
         random = new Random();
         sorsolBef = false;
+        rendezBef = false;
     }
 
     public void sorsolRendezCLick(ActionEvent actionEvent) {
         if (sorsolBef){
-            rendez();
+            if (rendezBef){
+                reset();
+            }
+            else{
+                rendez();
+            }
         }
         else {
             sorsol();
@@ -50,10 +56,30 @@ public class Controller {
     }
 
     public void rendez(){
+        gomb.setText("Sorsol");
+        sorsoltSzamokLista.sort(Comparator.naturalOrder());
+        for (int i = 0; i < 5; i++) {
+            kiiras(i, Integer.toString(sorsoltSzamokLista.get(i)));
+        }
+        int listaIndex = random.nextInt(5);
+        kihuzottSzam.setText(String.valueOf(sorsoltSzamokLista.get(listaIndex)));
+        rendezBef = true;
+    }
 
+    public void reset() {
+        sorsoltSzamokLista = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            kiiras(i, "");
+        }
+        gombLenyomasCount = 0;
+        gomb.setText("Sorsol");
+        kihuzottSzam.setText("0");
+        rendezBef = false;
+        sorsolBef = false;
     }
 
     public void sorsol() {
+
         Timer timerKihuzottAnimacio = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -68,17 +94,24 @@ public class Controller {
             public void run() {
                 timerKihuzottAnimacio.cancel();
                 Platform.runLater(() -> {
-                    kihuzottSzamSzam = random.nextInt(90) + 1;
-                    kihuzottSzam.setText(String.format("%d", kihuzottSzamSzam));
-                    //kiiras();
+                    while (sorsoltSzamokLista.contains(kihuzottSzamSzam) || kihuzottSzamSzam == 0) {
+                        kihuzottSzamSzam = random.nextInt(90) + 1;
+                    }
+                    String kihuzottSzamString = Integer.toString(kihuzottSzamSzam);
+                    kihuzottSzam.setText(kihuzottSzamString);
+                    kiiras(kihuzottSzamSzam);
+                    if (gombLenyomasCount == 5) {
+                        gomb.setText("Rendez");
+                        sorsolBef = true;
+                    }
                 });
             }
         };
         timer2.schedule(timerTask2, 1000);
     }
 
-   /*public void kiiras(int lottoszam, String kihuzottString) {
-        switch (gombLenyomasCount){
+   public void kiiras(int labelekSzama, String kihuzottString) {
+        switch (labelekSzama){
             case 0: elso.setText(kihuzottString); break;
             case 1: masodik.setText(kihuzottString); break;
             case 2: harmadik.setText(kihuzottString); break;
@@ -91,5 +124,5 @@ public class Controller {
         sorsoltSzamokLista.add(lottoszam);
         kiiras(gombLenyomasCount, Integer.toString(lottoszam));
         gombLenyomasCount++;
-    }*/
+    }
 }

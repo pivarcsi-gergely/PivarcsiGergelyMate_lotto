@@ -1,0 +1,7 @@
+#gomb {
+    -fx-background-color: #c2c2c2;
+    -fx-border-color: black;
+    -fx-border-width: 3;
+    -fx-border-style: solid;
+    -fx-font-size:20;
+}
