@@ -1,0 +1,7 @@
+A melléklet drótváz alapján készíts egy alkalmazást, amely ötöslottó számokat képes sorsolni.
+
+A sorsol gombra kattintva 1-2 másodpercig véletlen számok jelenjenek meg a nagy feliraton, majd jelenjen meg a ténylegesen sorsolt szám.
+Ügyelj rá, hogy már kihúzott számokat ne sorsoljon újra.
+Csak addig lehessen sorsolni amíg 5 számot nem húzott, ekkor a Sorsol gomb felirata változzon "Rendez"-re.
+Rendez gombra kattintva a kisorsolt számokat rakja növekvő sorrendre, majd a gomb felirata váltson vissza "Sorsol"-ra.
+Ilyenkor kattintásra tűnjön el az összes eddig sorsolt szám és kezdje el elölről a sorsolást.

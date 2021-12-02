@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane hgap="10" minHeight="210" minWidth="600" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <rowConstraints>
+      <RowConstraints minHeight="100" />
+      <RowConstraints minHeight="30" />
+      <RowConstraints minHeight="100" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints minWidth="100" />
+      <ColumnConstraints minWidth="100" />
+      <ColumnConstraints minWidth="100" />
+      <ColumnConstraints minWidth="100" />
+      <ColumnConstraints minWidth="100" />
+      <ColumnConstraints minWidth="100" />
+   </columnConstraints>
+   <children>
+      <Button fx:id="gomb" mnemonicParsing="false" onAction="#sorsolRendezCLick" text="Sorsol" GridPane.columnIndex="0" GridPane.rowIndex="0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="kihuzottSzam" GridPane.columnIndex="3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="elso" GridPane.rowIndex="1" />
+      <Label fx:id="masodik" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="harmadik" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label fx:id="negyedik" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <Label  fx:id="otodik" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+   </children>
+</GridPane>
